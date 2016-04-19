@@ -10,4 +10,99 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+function source_if_exists {
+  if [[ -s $1 ]] ; then
+      source $1
+  # elif [[ "$PS1" ]]; then
+  #     # Warn when running interactively, not otherwise
+  #     echo $1 not found.
+  fi
+}
+
+function command_exists_on_path () {
+  type "$1" &> /dev/null ;
+}
+
+# Tweak the path.
+export PATH=/opt/local/bin:/opt/local/sbin:~/bin:~/src/hadoop-0.20.2/bin:$PATH
+
+if [[ $(uname) =~ "Darwin" ]]; then
+    # OS X limits us to 256 open file descriptors by default. That's kinda
+    # small. Node can chew that up easily.
+    # See http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Mac-OS-X for
+    # information about creating /Library/LaunchDaemons/limit.{maxfiles,maxprocs}.plist
+    ulimit -n 10000
+
+    # Move /usr/local/bin to the front for Homebrew
+    export PATH=/usr/local/bin:$PATH
+fi
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # WARNING: enabling this can cause multi-second delays due to NFS latency
+    #alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+if [[ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]]; then
+  alias emacs='open -a emacs'
+  alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+  alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -n'
+  alias edit="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -t"
+  export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -t"
+else
+  alias ec="emacsclient --alternate-editor= -n"
+  alias e="emacsclient --alternate-editor= -n"
+  alias edit="emacsclient --alternate-editor= -t"
+  export EDITOR="emacsclient --alternate-editor= -t"
+fi
+
+alias ls="ls -Gp"
+alias l="ls -la"
+alias p="pushd ~/src/Paper"
+function up {
+  dir="$(up_dir $@)"
+  pushd $dir
+}
+if [[ $(uname) =~ "Darwin" ]]; then
+  alias xc="open -a Xcode"
+else
+  alias pbcopy="xclip -i -sel clip"
+  alias pbpaste="xclip -o"
+  alias ack="ack-grep"
+fi
+alias ag="ag --pager='less -FXR' --depth 100"
+
+export GIT_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
+# Alias git to the hub command
+if command_exists_on_path hub; then
+    eval "$(hub alias -s)"
+fi
+
+# Load local script, if any
+source_if_exists ~/.zshrc.local
+
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Get grunt tab completion if it's installed
+# doesn't work!
+# command -v "grunt" > /dev/null && eval "$(grunt --completion=zsh)"
+
+export NVM_DIR="/Users/brian/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
