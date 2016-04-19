@@ -31,8 +31,19 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
+  'ssh' \
   'completion' \
+  'homebrew' \
+  'osx' \
+  'git' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'prompt'
+
+# Packages to investigate
+#  'rails' \
+#  'ruby' \
+#  'node' \
 
 #
 # Autosuggestions
