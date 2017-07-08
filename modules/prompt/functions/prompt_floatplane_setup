@@ -46,7 +46,7 @@ function prompt_floatplane_setup {
 
   # Define prompts.
   PROMPT="%n@%B%m%b: %~ "'${git_info:+${(e)git_info[prompt]}}'" $ "
-  RPROMPT='${_prompt_floatplane_colors[5]}| nvm `nvm current`%f'
+  # RPROMPT='${_prompt_floatplane_colors[5]}| nvm `nvm current`%f'
 }
 
 prompt_floatplane_setup "$@"
