@@ -109,3 +109,7 @@ export NVM_DIR="/Users/brian/.nvm"
 
 # YOLO. remove the '-i'
 alias rm='nocorrect rm'
+
+# Octave. Force command line
+alias octave='echo "\noctave is aliased to octave-cli, override by launching octave-gui explicitly\n"; octave-cli'
+
