@@ -113,3 +113,5 @@ alias rm='nocorrect rm'
 # Octave. Force command line
 alias octave='echo "\noctave is aliased to octave-cli, override by launching octave-gui explicitly\n"; octave-cli'
 
+# Don't make me quote things like the ^ in `git reset --hard HEAD^1`
+unsetopt nomatch
