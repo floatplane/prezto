@@ -115,3 +115,6 @@ alias octave='echo "\noctave is aliased to octave-cli, override by launching oct
 
 # Don't make me quote things like the ^ in `git reset --hard HEAD^1`
 unsetopt nomatch
+
+source_if_exists ~/projects/google-cloud-sdk/completion.zsh.inc
+source_if_exists ~/projects/google-cloud-sdk/path.zsh.inc
