@@ -38,14 +38,14 @@ function prompt_floatplane_setup {
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes' # needed? what does this do
   zstyle ':prezto:module:git:info:branch' format "${_prompt_floatplane_colors[1]}%b%f"
-  zstyle ':prezto:module:git:info:dirty' format "${_prompt_floatplane_colors[4]}⚡%f "
+  zstyle ':prezto:module:git:info:dirty' format "${_prompt_floatplane_colors[4]}⚡%f"
   zstyle ':prezto:module:git:info:clean' format ""
   zstyle ':prezto:module:git:info:keys' format \
     'prompt' '%b%C%D' \
     'rprompt' ''
 
   # Define prompts.
-  PROMPT="%n@%B%m%b: %~ "'${git_info:+${(e)git_info[prompt]}}'"$ "
+  PROMPT="%n@%B%m%b: %~ "'${git_info:+${(e)git_info[prompt]}}'" $ "
   # RPROMPT='${_prompt_floatplane_colors[5]}| nvm `nvm current`%f'
 }
 
