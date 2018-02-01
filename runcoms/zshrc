@@ -68,7 +68,7 @@ fi
 
 alias ls="ls -Gp"
 alias l="ls -la"
-alias p="pushd ~/src/Paper"
+alias p="pushd ~/stripe/pay-server"
 function up {
   dir="$(up_dir $@)"
   pushd $dir
