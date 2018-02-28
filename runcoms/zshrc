@@ -54,15 +54,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [[ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]]; then
-  alias emacs='open -a emacs'
-  alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
   alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -n'
-  alias edit="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -t"
-  export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -t"
+  export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs"
 else
   alias ec="emacsclient --alternate-editor= -n"
-  alias e="emacsclient --alternate-editor= -n"
-  alias edit="emacsclient --alternate-editor= -t"
   export EDITOR="emacsclient --alternate-editor= -t"
 fi
 
@@ -106,6 +101,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 export NVM_DIR="/Users/brian/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -x `which nodenv` ]] && eval "$(nodenv init -)"
 
 # YOLO. remove the '-i'
 alias rm='nocorrect rm'
@@ -118,3 +114,6 @@ unsetopt nomatch
 
 source_if_exists ~/projects/google-cloud-sdk/completion.zsh.inc
 source_if_exists ~/projects/google-cloud-sdk/path.zsh.inc
+
+# Muscle memory is hard
+alias blaze bazel
