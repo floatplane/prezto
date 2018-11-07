@@ -117,3 +117,25 @@ source_if_exists ~/projects/google-cloud-sdk/path.zsh.inc
 
 # Muscle memory is hard
 alias blaze bazel
+
+# Load CLI improvements
+[[ -x `which bat` ]] && alias cat='bat -p' && export GIT_PAGER='bat -p' && export BAT_THEME="GitHub" 
+[[ -x `prettyping` ]] && alias ping='prettyping --nolegend'
+
+# Look for alias matches in previous command
+
+# This doesn't work great if $1 has a / in it, for example 'git co origin/master'
+function _floatplane-look-for-alias-in-current-command() {
+    _floatplane_last_command=$1
+
+    _floatplane_alias_match=`alias | ruby ~/dotfiles/bin/alias_match.rb "$1"`
+
+    # _floatplane_alias_match=`alias | ruby -lne "val = \$_.sub(\"=\'\", \"=\").sub(/\'\$/, \"\").split(\"=\"); if (\"$1\" == val[0] && val[0].length < val[0].length) print val[1]"`
+}
+function _floatplane-output-alias-match() {
+    [[ -n $_floatplane_alias_match ]] && print -P "\n%F{green}Save time!%f Use the alias %B$_floatplane_alias_match%b for $_floatplane_last_command"
+    _floatplane_alias_match=""
+    _floatplane_last_command=""
+}
+add-zsh-hook preexec _floatplane-look-for-alias-in-current-command
+add-zsh-hook precmd _floatplane-output-alias-match
