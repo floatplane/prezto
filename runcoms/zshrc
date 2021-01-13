@@ -64,7 +64,7 @@ if [[ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]]; then
   alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -n'
   export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs"
 else
-  alias ec="emacsclient --alternate-editor= -n"
+  alias ec="emacsclient --alternate-editor= -c -n"
   export EDITOR="emacsclient --alternate-editor= -t"
 fi
 
@@ -126,7 +126,7 @@ source_if_exists ~/projects/google-cloud-sdk/path.zsh.inc
 alias blaze bazel
 
 # Load CLI improvements
-[[ -x `which bat` ]] && alias cat='bat -p' && export GIT_PAGER='bat -p' && export BAT_THEME="GitHub" 
+[[ -x `which bat` ]] && alias cat='bat -p' && export GIT_PAGER='bat -p' && export BAT_THEME="GitHub"
 [[ -x `prettyping` ]] && alias ping='prettyping --nolegend'
 
 # Look for alias matches in previous command
