@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -64,9 +66,11 @@ if [[ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]]; then
   alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -n'
   export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs"
 else
-  alias ec="emacsclient --alternate-editor= -c -n"
-  export EDITOR="emacsclient --alternate-editor= -t"
+  alias ec="emacsclient --alternate-editor=emacs -n"
+  export EDITOR="emacsclient --alternate-editor=emacs"
 fi
+export GIT_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 
 alias ls="ls -Gp"
 alias l="ls -la"
@@ -83,9 +87,9 @@ else
   alias ack="ack-grep"
 fi
 alias ag="ag --pager='less -FXR' --depth 100"
-
-export GIT_EDITOR=$EDITOR
-export VISUAL=$EDITOR
+function rg {
+  /usr/local/bin/rg -p "$@" | less -FXR
+}
 
 # Alias git to the hub command
 # if command_exists_on_path hub; then
