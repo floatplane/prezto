@@ -81,6 +81,7 @@ function up {
 }
 if [[ $(uname) =~ "Darwin" ]]; then
   alias xc="open -a Xcode"
+  eval $(/opt/homebrew/bin/brew shellenv)
 else
   alias pbcopy="xclip -i -sel clip"
   alias pbpaste="xclip -o"
