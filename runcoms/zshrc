@@ -96,6 +96,7 @@ function rg {
 # if command_exists_on_path hub; then
 #     eval "$(hub alias -s)"
 # fi
+alias gcb='git checkout $(git branch --sort=-committerdate | fzf)'
 
 # Load local script, if any
 source_if_exists ~/.zshrc.local
@@ -133,6 +134,7 @@ alias blaze bazel
 # Load CLI improvements
 [[ -x `which bat` ]] && alias cat='bat -p' && export GIT_PAGER='bat -p' && export BAT_THEME="GitHub"
 [[ -x `prettyping` ]] && alias ping='prettyping --nolegend'
+[[ -x `which zoxide` ]] && eval "$(zoxide init zsh)"
 
 # Look for alias matches in previous command
 
@@ -154,3 +156,5 @@ add-zsh-hook precmd _floatplane-output-alias-match
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
