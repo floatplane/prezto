@@ -89,7 +89,7 @@ else
 fi
 alias ag="ag --pager='less -FXR' --depth 100"
 function rg {
-  /usr/local/bin/rg -p "$@" | less -FXR
+  rg -p "$@" | less -FXR
 }
 
 # Alias git to the hub command
@@ -104,6 +104,7 @@ source_if_exists ~/.zshrc.local
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+eval "$(rbenv init -)"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
