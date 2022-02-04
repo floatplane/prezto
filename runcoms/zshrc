@@ -134,6 +134,7 @@ alias blaze bazel
 
 # Load CLI improvements
 [[ -x `which bat` ]] && alias cat='bat -p' && export GIT_PAGER='bat -p' && export BAT_THEME="GitHub"
+[[ -x `which delta` ]] && export GIT_PAGER='delta'
 [[ -x `prettyping` ]] && alias ping='prettyping --nolegend'
 [[ -x `which zoxide` ]] && eval "$(zoxide init zsh)"
 
