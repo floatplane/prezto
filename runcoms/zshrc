@@ -89,7 +89,7 @@ else
 fi
 alias ag="ag --pager='less -FXR' --depth 100"
 function rg {
-  rg -p "$@" | less -FXR
+  command rg -p "$@" | less -FXR
 }
 
 # Alias git to the hub command
