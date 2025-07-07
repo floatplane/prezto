@@ -119,8 +119,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # doesn't work!
 # command -v "grunt" > /dev/null && eval "$(grunt --completion=zsh)"
 
-export NVM_DIR="/Users/brians/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/Users/brians/.nvm"
+# [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -x `which nodenv` ]] && eval "$(nodenv init -)"
 
 # YOLO. remove the '-i'
@@ -169,4 +169,13 @@ add-zsh-hook precmd _floatplane-output-alias-match
 
 # Set up direnve
 [[ -x `which direnv` ]] && eval "$(direnv hook zsh)"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Created by `pipx` on 2024-08-05 16:37:16
+export PATH="$PATH:/Users/brians/.local/bin"
+command -v "register-python-argcomplete" > /dev/null && eval "$(register-python-argcomplete pipx)"
+[[ -d "/opt/homebrew/opt/mysql-client/bin" ]] && export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+export DOCKER_VOLUME_DIRECTORY=$HOME/.docker
+
+command -v "just" > /dev/null && eval "$(just --completions=zsh)"
